@@ -1,0 +1,6 @@
+{
+  "name": "ระบบเช็คชื่อนักเรียน",
+  "description": "ระบบบันทึกและจัดการการเช็คชื่อนักเรียน จัดการห้องเรียน และสรุปสถิติการเข้าเรียน (Student Attendance Management System)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
