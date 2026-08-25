@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '../apiClient';
 import { Classroom } from '../../types/classroom';
 import { API_ENDPOINTS } from '../../constants/api';
-import { MOCK_CLASSROOMS } from '../../mocks/classrooms.mock';
 
 export const CLASSROOM_KEYS = {
   all: ['classrooms'] as const,
@@ -16,14 +15,9 @@ export async function fetchClassrooms(): Promise<Classroom[]> {
     if (res.data && typeof res.data === 'object' && 'data' in res.data && Array.isArray(res.data.data)) {
       return res.data.data;
     }
-    const local = localStorage.getItem('app_cached_classrooms');
-    if (local) return JSON.parse(local);
-    return MOCK_CLASSROOMS;
+    return [];
   } catch {
-    // Fallback to mock data if backend is booting or in dev
-    const local = localStorage.getItem('app_cached_classrooms');
-    if (local) return JSON.parse(local);
-    return MOCK_CLASSROOMS;
+    return [];
   }
 }
 
@@ -44,11 +38,9 @@ export function useClassroomDetailQuery(id: string) {
         if (res.data && typeof res.data === 'object' && 'data' in res.data && res.data.data) {
           return res.data.data;
         }
-        const all = await fetchClassrooms();
-        return all.find((c) => c.id === id) || null;
+        return null;
       } catch {
-        const all = await fetchClassrooms();
-        return all.find((c) => c.id === id) || null;
+        return null;
       }
     },
     enabled: !!id,

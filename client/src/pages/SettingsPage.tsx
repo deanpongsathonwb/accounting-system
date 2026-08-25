@@ -123,10 +123,10 @@ export const SettingsPage: React.FC = () => {
             variant="outline"
             size="sm"
             onClick={() => setIsResetDialogOpen(true)}
-            leftIcon={<RotateCcw className="w-4 h-4 text-rose-500" />}
-            className="text-rose-600 hover:border-rose-300"
+            leftIcon={<RotateCcw className="w-4 h-4 text-slate-500" />}
+            className="text-slate-600 hover:border-slate-300"
           >
-            รีเซ็ตข้อมูลเริ่มต้น (Demo Data)
+            ล้างข้อมูลแคชชั่วคราว (Clear Cache)
           </Button>
 
           <Button type="submit" variant="primary" size="md" leftIcon={<Save className="w-4 h-4" />}>
@@ -139,8 +139,8 @@ export const SettingsPage: React.FC = () => {
         isOpen={isResetDialogOpen}
         onClose={() => setIsResetDialogOpen(false)}
         onConfirm={handleResetData}
-        title="รีเซ็ตข้อมูลทั้งหมด"
-        message="การดำเนินการนี้จะลบข้อมูลที่บันทึกไว้ในแคชทั้งหมด และรีโหลดข้อมูลตัวอย่างเริ่มต้น คุณแน่ใจหรือไม่?"
+        title="ล้างข้อมูลแคชชั่วคราว"
+        message="การดำเนินการนี้จะล้างข้อมูลแคชในเบราว์เซอร์และรีโหลดหน้าจอ คุณต้องการดำเนินการต่อหรือไม่?"
         isDangerous
       />
     </div>

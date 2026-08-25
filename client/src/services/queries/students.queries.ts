@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '../apiClient';
 import { Student } from '../../types/student';
 import { API_ENDPOINTS } from '../../constants/api';
-import { MOCK_STUDENTS } from '../../mocks/students.mock';
 
 export const STUDENT_KEYS = {
   all: ['students'] as const,
@@ -17,19 +16,9 @@ export async function fetchStudents(classroomId?: string): Promise<Student[]> {
     if (res.data && typeof res.data === 'object' && 'data' in res.data && Array.isArray(res.data.data)) {
       return res.data.data;
     }
-    const local = localStorage.getItem('app_cached_students');
-    let list: Student[] = local ? JSON.parse(local) : MOCK_STUDENTS;
-    if (classroomId) {
-      list = list.filter((s) => s.classroomId === classroomId);
-    }
-    return list;
+    return [];
   } catch {
-    const local = localStorage.getItem('app_cached_students');
-    let list: Student[] = local ? JSON.parse(local) : MOCK_STUDENTS;
-    if (classroomId) {
-      list = list.filter((s) => s.classroomId === classroomId);
-    }
-    return list;
+    return [];
   }
 }
 
@@ -50,11 +39,9 @@ export function useStudentDetailQuery(id: string) {
         if (res.data && typeof res.data === 'object' && 'data' in res.data && res.data.data) {
           return res.data.data;
         }
-        const all = await fetchStudents();
-        return all.find((s) => s.id === id) || null;
+        return null;
       } catch {
-        const all = await fetchStudents();
-        return all.find((s) => s.id === id) || null;
+        return null;
       }
     },
     enabled: !!id,

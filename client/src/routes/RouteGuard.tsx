@@ -1,30 +1,28 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthStore } from '../stores/authStore';
-import { ROUTES } from '../constants/routes';
+import { ROUTES, getDefaultRouteForRole } from '../constants/routes';
 
 interface RouteGuardProps {
   children?: React.ReactNode;
-  requireAuth?: boolean;
-  requiredRole?: string[];
-  redirectTo?: string;
+  allowedRoles?: Array<'admin' | 'teacher' | 'staff'>;
 }
 
 export const RouteGuard: React.FC<RouteGuardProps> = ({
   children,
-  requireAuth = false,
-  requiredRole,
-  redirectTo = ROUTES.DASHBOARD,
+  allowedRoles,
 }) => {
   const { isAuthenticated, user } = useAuthStore();
 
-  if (requireAuth && !isAuthenticated) {
-    return <Navigate to={redirectTo} replace />;
+  if (!isAuthenticated) {
+    return <Navigate to={ROUTES.LOGIN} replace />;
   }
 
-  if (requiredRole && requiredRole.length > 0 && user) {
-    if (!requiredRole.includes(user.role)) {
-      return <Navigate to={ROUTES.DASHBOARD} replace />;
+  if (allowedRoles && allowedRoles.length > 0 && user) {
+    if (!allowedRoles.includes(user.role)) {
+      // Direct user to their appropriate production portal
+      const fallbackRoute = getDefaultRouteForRole(user.role);
+      return <Navigate to={fallbackRoute} replace />;
     }
   }
 

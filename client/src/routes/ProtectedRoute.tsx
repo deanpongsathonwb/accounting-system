@@ -7,7 +7,7 @@ export const ProtectedRoute: React.FC<{ children?: React.ReactNode }> = ({ child
   const { isAuthenticated } = useAuthStore();
 
   if (!isAuthenticated) {
-    return <Navigate to={ROUTES.DASHBOARD} replace />;
+    return <Navigate to={ROUTES.LOGIN} replace />;
   }
 
   return children ? <>{children}</> : <Outlet />;

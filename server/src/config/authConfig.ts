@@ -1,5 +1,4 @@
 export const authConfig = {
-  jwtSecret: process.env.JWT_SECRET || 'attendance-system-dev-secret-key-2025',
+  jwtSecret: process.env.JWT_SECRET || 'attendance-system-prod-auth-secret-key-2026',
   tokenExpiresIn: '7d',
-  mockUsersEnabled: true,
 } as const;

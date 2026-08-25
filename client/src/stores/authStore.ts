@@ -4,10 +4,12 @@ import { STORAGE_KEYS } from '../constants/storage';
 
 export interface UserProfile {
   id: string;
+  username: string;
   name: string;
-  role: 'teacher' | 'admin' | 'staff';
+  role: 'admin' | 'teacher' | 'staff';
   email: string;
-  school: string;
+  avatarUrl?: string;
+  assignedClassrooms?: string[];
 }
 
 interface AuthState {
@@ -21,17 +23,13 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      isAuthenticated: true, // Default to demo logged-in state for smooth preview
-      user: {
-        id: 'usr-001',
-        name: 'อ.วรรณภา จันทร์เพ็ญ',
-        role: 'teacher',
-        email: 'wannapha@school.ac.th',
-        school: 'โรงเรียนสาธิตวิทยาคม',
-      },
-      token: 'mock-jwt-token-attendance-system',
+      isAuthenticated: false,
+      user: null,
+      token: null,
       login: (user, token) => set({ isAuthenticated: true, user, token }),
-      logout: () => set({ isAuthenticated: false, user: null, token: null }),
+      logout: () => {
+        set({ isAuthenticated: false, user: null, token: null });
+      },
     }),
     {
       name: STORAGE_KEYS.AUTH_TOKEN,

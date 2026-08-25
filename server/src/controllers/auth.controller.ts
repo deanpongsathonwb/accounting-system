@@ -11,8 +11,10 @@ export class AuthController {
   }
 
   async me(req: AuthenticatedRequest, res: Response) {
-    const userId = req.user?.id || 'usr_admin';
-    const user = await authService.getCurrentUser(userId);
+    if (!req.user?.id) {
+      return sendSuccess(res, null, 'ไม่ได้เข้าสู่ระบบ');
+    }
+    const user = await authService.getCurrentUser(req.user.id);
     return sendSuccess(res, user, 'ดึงข้อมูลโปรไฟล์สำเร็จ');
   }
 
