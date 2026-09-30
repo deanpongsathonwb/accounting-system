@@ -1,0 +1,162 @@
+[
+  {
+    "code": "1101",
+    "name": "เงินสดและรายการเทียบเท่าเงินสด",
+    "category": "asset",
+    "normalBalance": "debit",
+    "balance": 1850000.0,
+    "active": true
+  },
+  {
+    "code": "1102",
+    "name": "เงินฝากกระแสรายวัน - ธนาคารกสิกรไทย",
+    "category": "asset",
+    "normalBalance": "debit",
+    "balance": 4320500.5,
+    "active": true
+  },
+  {
+    "code": "1103",
+    "name": "ลูกหนี้การค้า",
+    "category": "asset",
+    "normalBalance": "debit",
+    "balance": 2150000.0,
+    "active": true
+  },
+  {
+    "code": "1104",
+    "name": "ค่าเผื่อหนี้สงสัยจะสูญ",
+    "category": "asset",
+    "normalBalance": "credit",
+    "balance": -85000.0,
+    "active": true
+  },
+  {
+    "code": "1105",
+    "name": "สินค้าคงเหลือ",
+    "category": "asset",
+    "normalBalance": "debit",
+    "balance": 3450000.0,
+    "active": true
+  },
+  {
+    "code": "1106",
+    "name": "ภาษีซื้อรอยื่นแบบ",
+    "category": "asset",
+    "normalBalance": "debit",
+    "balance": 142500.0,
+    "active": true
+  },
+  {
+    "code": "1201",
+    "name": "ที่ดิน อาคารและอุปกรณ์",
+    "category": "asset",
+    "normalBalance": "debit",
+    "balance": 12800000.0,
+    "active": true
+  },
+  {
+    "code": "1202",
+    "name": "ค่าเสื่อมราคาสะสม - อาคารและอุปกรณ์",
+    "category": "asset",
+    "normalBalance": "credit",
+    "balance": -2450000.0,
+    "active": true
+  },
+  {
+    "code": "2101",
+    "name": "เจ้าหนี้การค้า",
+    "category": "liability",
+    "normalBalance": "credit",
+    "balance": 1950000.0,
+    "active": true
+  },
+  {
+    "code": "2102",
+    "name": "ภาษีขายรอนำส่ง",
+    "category": "liability",
+    "normalBalance": "credit",
+    "balance": 238000.0,
+    "active": true
+  },
+  {
+    "code": "2103",
+    "name": "ภาษีเงินได้หัก ณ ที่จ่ายค้างจ่าย",
+    "category": "liability",
+    "normalBalance": "credit",
+    "balance": 48200.0,
+    "active": true
+  },
+  {
+    "code": "2201",
+    "name": "เงินกู้ยืมระยะยาวจากสถาบันการเงิน",
+    "category": "liability",
+    "normalBalance": "credit",
+    "balance": 5000000.0,
+    "active": true
+  },
+  {
+    "code": "3101",
+    "name": "ทุนเรือนหุ้นจดทะเบียนชำระแล้ว",
+    "category": "equity",
+    "normalBalance": "credit",
+    "balance": 10000000.0,
+    "active": true
+  },
+  {
+    "code": "3102",
+    "name": "กำไรสะสมยังไม่ได้จัดสรร",
+    "category": "equity",
+    "normalBalance": "credit",
+    "balance": 3841800.5,
+    "active": true
+  },
+  {
+    "code": "4101",
+    "name": "รายได้จากการขายสินค้า",
+    "category": "revenue",
+    "normalBalance": "credit",
+    "balance": 7450000.0,
+    "active": true
+  },
+  {
+    "code": "4102",
+    "name": "รายได้จากการให้บริการปรึกษา",
+    "category": "revenue",
+    "normalBalance": "credit",
+    "balance": 1820000.0,
+    "active": true
+  },
+  {
+    "code": "5101",
+    "name": "ต้นทุนขายสินค้า",
+    "category": "expense",
+    "normalBalance": "debit",
+    "balance": 4120000.0,
+    "active": true
+  },
+  {
+    "code": "5201",
+    "name": "เงินเดือนและสวัสดิการพนักงาน",
+    "category": "expense",
+    "normalBalance": "debit",
+    "balance": 1450000.0,
+    "active": true
+  },
+  {
+    "code": "5202",
+    "name": "ค่าเช่าสำนักงานและคลังสินค้า",
+    "category": "expense",
+    "normalBalance": "debit",
+    "balance": 360000.0,
+    "active": true
+  },
+  {
+    "code": "5203",
+    "name": "ค่าเสื่อมราคาและค่าตัดจำหน่าย",
+    "category": "expense",
+    "normalBalance": "debit",
+    "balance": 210000.0,
+    "active": true
+  }
+]

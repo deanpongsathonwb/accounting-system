@@ -1,0 +1,22 @@
+{
+  "bankAccount": "ธนาคารกสิกรไทย กระแสรายวัน เลขที่ 789-1-23456-7",
+  "statementBalance": 4660000.5,
+  "bookBalance": 4320500.5,
+  "outstandingCheques": 339500.0,
+  "depositsInTransit": 0.0,
+  "reconciled": true,
+  "periodStatus": {
+    "fiscalYear": 2569,
+    "currentMonth": 9,
+    "status": "open",
+    "signedBy": "อรทัย ตรวจสอบละเอียด (CPA No. 89201)",
+    "signedDate": "2026-09-29",
+    "asOfDate": "30/09/2569"
+  },
+  "taxSummary": {
+    "outputTaxTotal": 238000.0,
+    "inputTaxTotal": 142500.0,
+    "netTaxPayable": 95500.0,
+    "filingPeriod": "09/2569"
+  }
+}

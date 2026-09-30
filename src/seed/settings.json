@@ -1,0 +1,12 @@
+{
+  "systemOwner": "บริษัท นวัตกรรมบัญชีไทย จำกัด (มหาชน)",
+  "taxId": "0107564000123",
+  "address": "เลขที่ 123 อาคารพาณิชย์การ ถนนสาทรใต้ แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120",
+  "fiscalYear": 2569,
+  "taxRatePercent": 7,
+  "withholdingTaxPercent": 3,
+  "invoiceDueDays": 30,
+  "autoPostJournals": true,
+  "accountingStandard": "TFRS for PAEs",
+  "lastBackupTime": "2026-09-30 06:00:00"
+}

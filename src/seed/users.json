@@ -1,0 +1,34 @@
+[
+  {
+    "id": "u001",
+    "username": "somchai.acc",
+    "fullName": "สมชาย รักความเที่ยงตรง",
+    "role": "accountant",
+    "status": "active",
+    "lastLogin": "2026-09-30 08:45"
+  },
+  {
+    "id": "u002",
+    "username": "orathai.aud",
+    "fullName": "อรทัย ตรวจสอบละเอียด",
+    "role": "auditor",
+    "status": "active",
+    "lastLogin": "2026-09-30 09:12"
+  },
+  {
+    "id": "u003",
+    "username": "thanakorn.bill",
+    "fullName": "ธนกร เรียกเก็บทันใจ",
+    "role": "billing",
+    "status": "active",
+    "lastLogin": "2026-09-30 08:30"
+  },
+  {
+    "id": "u004",
+    "username": "kamonrat.adm",
+    "fullName": "กมลรัตน์ มั่นคงระบบ",
+    "role": "admin",
+    "status": "active",
+    "lastLogin": "2026-09-30 07:55"
+  }
+]
