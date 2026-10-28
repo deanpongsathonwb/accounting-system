@@ -1,112 +1,267 @@
-import { useState, useCallback } from 'react';
-import type { AccountItem, JournalEntry, Invoice, SystemSettings, AuditLog } from '../types/common.types.ts';
-import initialSettings from '../seed/settings.json';
-import initialAccounts from '../seed/accounts.json';
-import initialJournals from '../seed/journals.json';
-import initialInvoicesData from '../seed/invoices.json';
-import initialReconciliationData from '../seed/reconciliations.json';
-import initialAuditLogs from '../seed/auditLogs.json';
+import { create } from 'zustand';
+import {
+  AccountItem,
+  JournalEntry,
+  InvoiceItem,
+  BillItem,
+  BankAccountItem,
+  AuditLogItem,
+  SystemSettings,
+  User,
+  NotificationItem
+} from '../types/common.types.ts';
 import { STORAGE_KEYS } from '../constants/storage.ts';
+import { storageService } from '../storage/index.ts';
+import { generateUniqueId } from '../utils/security.ts';
 
-function loadStored<T>(key: string, fallback: T): T {
-  try {
-    const raw = localStorage.getItem(key);
-    if (raw) return JSON.parse(raw);
-  } catch {
-    // technical error recovery
-  }
-  return fallback;
+import seedAccounts from '../seed/accounts.json';
+import seedJournals from '../seed/journals.json';
+import seedInvoices from '../seed/invoices.json';
+import seedBills from '../seed/bills.json';
+import seedBankAccounts from '../seed/bankAccounts.json';
+import seedUsers from '../seed/users.json';
+import seedSettings from '../seed/settings.json';
+import seedAuditLogs from '../seed/auditLogs.json';
+import seedNotifications from '../seed/notifications.json';
+
+interface AppPersistedState {
+  accounts: AccountItem[];
+  journals: JournalEntry[];
+  invoices: InvoiceItem[];
+  bills: BillItem[];
+  bankAccounts: BankAccountItem[];
+  users: User[];
+  settings: SystemSettings;
+  auditLogs: AuditLogItem[];
+  notifications: NotificationItem[];
 }
 
-export function useAccountingData() {
-  const [settings, setSettingsState] = useState<SystemSettings>(() =>
-    loadStored<SystemSettings>(STORAGE_KEYS.SETTINGS, initialSettings as SystemSettings)
-  );
+interface AppStore extends AppPersistedState {
+  addAccount: (account: AccountItem) => void;
+  addJournalEntry: (entry: JournalEntry) => void;
+  addInvoice: (invoice: InvoiceItem) => void;
+  updateInvoiceStatus: (id: string, status: InvoiceItem['status']) => void;
+  addBill: (bill: BillItem) => void;
+  updateBillStatus: (id: string, status: BillItem['status']) => void;
+  addBankAccount: (bank: BankAccountItem) => void;
+  updateSettings: (newSettings: SystemSettings) => void;
+  addUser: (user: User) => void;
+  addAuditLog: (log: AuditLogItem) => void;
+  addNotification: (item: Omit<NotificationItem, 'id' | 'timestamp' | 'read'>) => void;
+  markNotificationAsRead: (id: string) => void;
+  markAllNotificationsAsRead: () => void;
+  clearNotifications: () => void;
+  resetAllData: () => void;
+  isMobileSidebarOpen: boolean;
+  toggleMobileSidebar: () => void;
+  setMobileSidebarOpen: (open: boolean) => void;
+  isDesktopSidebarCollapsed: boolean;
+  toggleDesktopSidebar: () => void;
+}
 
-  const [accounts, setAccountsState] = useState<AccountItem[]>(() =>
-    loadStored<AccountItem[]>(STORAGE_KEYS.ACCOUNTS, initialAccounts as AccountItem[])
-  );
+const getInitialState = (): AppPersistedState => {
+  const stored = storageService.getItem<AppPersistedState>(STORAGE_KEYS.APP_DATA);
+  if (stored) {
+    return stored;
+  }
+  return {
+    accounts: seedAccounts as AccountItem[],
+    journals: seedJournals as JournalEntry[],
+    invoices: seedInvoices as InvoiceItem[],
+    bills: seedBills as BillItem[],
+    bankAccounts: seedBankAccounts as BankAccountItem[],
+    users: seedUsers as User[],
+    settings: seedSettings as SystemSettings,
+    auditLogs: seedAuditLogs as AuditLogItem[],
+    notifications: seedNotifications as NotificationItem[]
+  };
+};
 
-  const [journals, setJournalsState] = useState<JournalEntry[]>(() =>
-    loadStored<JournalEntry[]>(STORAGE_KEYS.JOURNALS, initialJournals as JournalEntry[])
-  );
+export const useAppStore = create<AppStore>((set, get) => {
+  const initial = getInitialState();
 
-  const [invoices, setInvoicesState] = useState<Invoice[]>(() =>
-    loadStored<Invoice[]>(STORAGE_KEYS.INVOICES, initialInvoicesData.invoices as Invoice[])
-  );
-
-  const [reconciliations, setReconciliationsState] = useState(() => initialReconciliationData);
-  const [auditLogs, setAuditLogs] = useState<AuditLog[]>(() => initialAuditLogs as AuditLog[]);
-
-  const updateSettings = useCallback((newSettings: SystemSettings) => {
-    setSettingsState(newSettings);
-    localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(newSettings));
-  }, []);
-
-  const addJournalEntry = useCallback((entry: JournalEntry) => {
-    setJournalsState((prev) => {
-      const next = [entry, ...prev];
-      localStorage.setItem(STORAGE_KEYS.JOURNALS, JSON.stringify(next));
-      return next;
-    });
-  }, []);
-
-  const postJournalEntry = useCallback((id: string) => {
-    setJournalsState((prev) => {
-      const next = prev.map((j) => (j.id === id ? { ...j, status: 'posted' as const } : j));
-      localStorage.setItem(STORAGE_KEYS.JOURNALS, JSON.stringify(next));
-      return next;
-    });
-  }, []);
-
-  const addAccount = useCallback((acc: AccountItem) => {
-    setAccountsState((prev) => {
-      const next = [...prev, acc];
-      localStorage.setItem(STORAGE_KEYS.ACCOUNTS, JSON.stringify(next));
-      return next;
-    });
-  }, []);
-
-  const markInvoicePaid = useCallback((invoiceNumber: string) => {
-    setInvoicesState((prev) => {
-      const next = prev.map((inv) =>
-        inv.invoiceNumber === invoiceNumber ? { ...inv, status: 'paid' as const } : inv
-      );
-      localStorage.setItem(STORAGE_KEYS.INVOICES, JSON.stringify(next));
-      return next;
-    });
-  }, []);
-
-  const togglePeriodStatus = useCallback(() => {
-    setReconciliationsState((prev) => ({
-      ...prev,
-      periodStatus: {
-        ...prev.periodStatus,
-        status: prev.periodStatus.status === 'open' ? 'closed' : 'open',
-      },
-    }));
-  }, []);
-
-  const addAuditLog = useCallback((log: AuditLog) => {
-    setAuditLogs((prev) => [log, ...prev]);
-  }, []);
+  const persist = (nextState: Partial<AppPersistedState>) => {
+    // Concurrency Protection: Read latest state from storage to avoid Lost Updates across concurrent tabs
+    const latestStored = storageService.getItem<AppPersistedState>(STORAGE_KEYS.APP_DATA) || get();
+    const updated: AppPersistedState = {
+      accounts: nextState.accounts ?? latestStored.accounts,
+      journals: nextState.journals ?? latestStored.journals,
+      invoices: nextState.invoices ?? latestStored.invoices,
+      bills: nextState.bills ?? latestStored.bills,
+      bankAccounts: nextState.bankAccounts ?? latestStored.bankAccounts,
+      users: nextState.users ?? latestStored.users,
+      settings: nextState.settings ?? latestStored.settings,
+      auditLogs: nextState.auditLogs ?? latestStored.auditLogs,
+      notifications: nextState.notifications ?? latestStored.notifications
+    };
+    storageService.setItem(STORAGE_KEYS.APP_DATA, updated);
+  };
 
   return {
-    settings,
-    updateSettings,
-    accounts,
-    addAccount,
-    journals,
-    addJournalEntry,
-    postJournalEntry,
-    invoices,
-    markInvoicePaid,
-    reconciliations,
-    togglePeriodStatus,
-    auditLogs,
-    addAuditLog,
-    customers: initialInvoicesData.customers,
-    receipts: initialInvoicesData.receipts,
-    agingSummary: initialInvoicesData.agingSummary,
+    ...initial,
+
+    addAccount: (account) => {
+      set((state) => {
+        const next = [account, ...state.accounts];
+        persist({ accounts: next });
+        return { accounts: next };
+      });
+    },
+
+    addJournalEntry: (entry) => {
+      set((state) => {
+        const next = [entry, ...state.journals];
+        persist({ journals: next });
+        return { journals: next };
+      });
+    },
+
+    addInvoice: (invoice) => {
+      set((state) => {
+        const next = [invoice, ...state.invoices];
+        persist({ invoices: next });
+        return { invoices: next };
+      });
+    },
+
+    updateInvoiceStatus: (id, status) => {
+      set((state) => {
+        const next = state.invoices.map((inv) => (inv.id === id ? { ...inv, status } : inv));
+        persist({ invoices: next });
+        return { invoices: next };
+      });
+    },
+
+    addBill: (bill) => {
+      set((state) => {
+        const next = [bill, ...state.bills];
+        persist({ bills: next });
+        return { bills: next };
+      });
+    },
+
+    updateBillStatus: (id, status) => {
+      set((state) => {
+        const next = state.bills.map((b) => (b.id === id ? { ...b, status } : b));
+        persist({ bills: next });
+        return { bills: next };
+      });
+    },
+
+    addBankAccount: (bank) => {
+      set((state) => {
+        const next = [bank, ...state.bankAccounts];
+        persist({ bankAccounts: next });
+        return { bankAccounts: next };
+      });
+    },
+
+    updateSettings: (newSettings) => {
+      set(() => {
+        persist({ settings: newSettings });
+        return { settings: newSettings };
+      });
+    },
+
+    addUser: (user) => {
+      set((state) => {
+        const next = [...state.users, user];
+        persist({ users: next });
+        return { users: next };
+      });
+    },
+
+    addAuditLog: (log) => {
+      set((state) => {
+        const next = [log, ...state.auditLogs];
+        persist({ auditLogs: next });
+        return { auditLogs: next };
+      });
+    },
+
+    addNotification: (item) => {
+      set((state) => {
+        const newNotif: NotificationItem = {
+          ...item,
+          id: generateUniqueId('notif'),
+          timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+          read: false
+        };
+        const next = [newNotif, ...state.notifications];
+        persist({ notifications: next });
+        return { notifications: next };
+      });
+    },
+
+    markNotificationAsRead: (id) => {
+      set((state) => {
+        const next = state.notifications.map((n) => (n.id === id ? { ...n, read: true } : n));
+        persist({ notifications: next });
+        return { notifications: next };
+      });
+    },
+
+    markAllNotificationsAsRead: () => {
+      set((state) => {
+        const next = state.notifications.map((n) => ({ ...n, read: true }));
+        persist({ notifications: next });
+        return { notifications: next };
+      });
+    },
+
+    clearNotifications: () => {
+      set(() => {
+        const next: NotificationItem[] = [];
+        persist({ notifications: next });
+        return { notifications: next };
+      });
+    },
+
+    resetAllData: () => {
+      const resetState: AppPersistedState = {
+        accounts: seedAccounts as AccountItem[],
+        journals: seedJournals as JournalEntry[],
+        invoices: seedInvoices as InvoiceItem[],
+        bills: seedBills as BillItem[],
+        bankAccounts: seedBankAccounts as BankAccountItem[],
+        users: seedUsers as User[],
+        settings: seedSettings as SystemSettings,
+        auditLogs: seedAuditLogs as AuditLogItem[],
+        notifications: seedNotifications as NotificationItem[]
+      };
+      persist(resetState);
+      set(resetState);
+    },
+
+    isMobileSidebarOpen: false,
+    toggleMobileSidebar: () => set((state) => ({ isMobileSidebarOpen: !state.isMobileSidebarOpen })),
+    setMobileSidebarOpen: (open: boolean) => set({ isMobileSidebarOpen: open }),
+    isDesktopSidebarCollapsed: false,
+    toggleDesktopSidebar: () => set((state) => ({ isDesktopSidebarCollapsed: !state.isDesktopSidebarCollapsed }))
   };
+});
+
+// Real-Time Cross-Tab Concurrency Synchronization Listener
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (event) => {
+    if (event.key === STORAGE_KEYS.APP_DATA && event.newValue) {
+      try {
+        const parsed = JSON.parse(event.newValue) as AppPersistedState;
+        useAppStore.setState((state) => ({
+          ...state,
+          accounts: parsed.accounts || state.accounts,
+          journals: parsed.journals || state.journals,
+          invoices: parsed.invoices || state.invoices,
+          bills: parsed.bills || state.bills,
+          bankAccounts: parsed.bankAccounts || state.bankAccounts,
+          users: parsed.users || state.users,
+          settings: parsed.settings || state.settings,
+          auditLogs: parsed.auditLogs || state.auditLogs,
+          notifications: parsed.notifications || state.notifications
+        }));
+      } catch {
+        // Ignore JSON parse error during storage flush
+      }
+    }
+  });
 }

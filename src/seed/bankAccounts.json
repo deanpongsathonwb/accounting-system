@@ -1,0 +1,29 @@
+[
+  {
+    "id": "bank-001",
+    "bankName": "ธนาคารกสิกรไทย",
+    "branch": "สาขาสีลม",
+    "accountNumber": "045-2-89123-4",
+    "accountType": "กระแสรายวัน",
+    "balance": 2480000,
+    "lastReconciled": "2026-09-30"
+  },
+  {
+    "id": "bank-002",
+    "bankName": "ธนาคารกรุงเทพ",
+    "branch": "สาขาสำนักงานใหญ่สีลม",
+    "accountNumber": "101-8-55421-9",
+    "accountType": "ออมทรัพย์พิเศษ",
+    "balance": 1850000,
+    "lastReconciled": "2026-09-30"
+  },
+  {
+    "id": "bank-003",
+    "bankName": "ธนาคารไทยพาณิชย์",
+    "branch": "สาขาสาทร",
+    "accountNumber": "214-3-44109-0",
+    "accountType": "กระแสรายวันเพื่อการค้า",
+    "balance": 620000,
+    "lastReconciled": "2026-09-30"
+  }
+]

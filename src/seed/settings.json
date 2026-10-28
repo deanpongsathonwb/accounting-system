@@ -1,12 +1,15 @@
 {
-  "systemOwner": "บริษัท นวัตกรรมบัญชีไทย จำกัด (มหาชน)",
-  "taxId": "0107564000123",
-  "address": "เลขที่ 123 อาคารพาณิชย์การ ถนนสาทรใต้ แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120",
-  "fiscalYear": 2569,
-  "taxRatePercent": 7,
-  "withholdingTaxPercent": 3,
-  "invoiceDueDays": 30,
-  "autoPostJournals": true,
-  "accountingStandard": "TFRS for PAEs",
-  "lastBackupTime": "2026-09-30 06:00:00"
+  "systemOwner": "บริษัท สยามพาณิชย์บัญชีและการค้า จำกัด (มหาชน)",
+  "taxId": "0107564000189",
+  "fiscalYear": "2569",
+  "accountingMethod": "เกณฑ์คงค้าง (Accrual Basis)",
+  "defaultVatRate": 7,
+  "withholdingTaxRate": 3,
+  "allowBackdatedEntries": true,
+  "requireDoubleApproval": false,
+  "autoJournalNumbering": true,
+  "invoicePrefix": "INV-2569-",
+  "billPrefix": "BILL-2569-",
+  "journalPrefix": "JV-2569-",
+  "currencyCode": "THB"
 }

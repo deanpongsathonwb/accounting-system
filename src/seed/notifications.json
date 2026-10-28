@@ -1,0 +1,42 @@
+[
+  {
+    "id": "notif-001",
+    "title": "ใบแจ้งหนี้ได้รับการชำระเงิน",
+    "message": "ใบแจ้งหนี้ INV-2569-001 ยอด 187,250.00 บาท ได้รับการชำระเงินเรียบร้อยแล้ว",
+    "type": "success",
+    "timestamp": "2026-10-27 10:15",
+    "read": false,
+    "link": "/finance/invoices",
+    "targetRole": "all"
+  },
+  {
+    "id": "notif-002",
+    "title": "มีใบสำคัญจ่ายใหม่รอการอนุมัติ",
+    "message": "ใบสำคัญจ่าย BILL-2569-003 จาก กฟน. ยอด 32,100.00 บาท รอดำเนินการ",
+    "type": "warning",
+    "timestamp": "2026-10-27 09:40",
+    "read": false,
+    "link": "/finance/bills",
+    "targetRole": "finance"
+  },
+  {
+    "id": "notif-003",
+    "title": "ผ่านรายการสมุดรายวันทั่วไปสำเร็จ",
+    "message": "บันทึกและผ่านรายการใบสำคัญ JV-2569-003 ยอด 2,835,500.00 บาท เรียบร้อยแล้ว",
+    "type": "info",
+    "timestamp": "2026-10-27 08:35",
+    "read": true,
+    "link": "/accountant/journal",
+    "targetRole": "accountant"
+  },
+  {
+    "id": "notif-004",
+    "title": "การสอบทานความถูกต้องทางบัญชี",
+    "message": "ระบบตรวจสอบรายการบัญชีอัตโนมัติประจำงวดผ่านเกณฑ์มาตรฐานทั้งหมด",
+    "type": "security",
+    "timestamp": "2026-10-26 18:00",
+    "read": true,
+    "link": "/auditor/compliance",
+    "targetRole": "all"
+  }
+]

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e40af" />
+      <stop offset="60%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="barGrad1" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#93c5fd" />
+      <stop offset="100%" stop-color="#bfdbfe" />
+    </linearGradient>
+    <linearGradient id="barGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+    <linearGradient id="barGrad3" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Rounded Shield/Square -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Subtle Inner Border Highlight -->
+  <rect x="16" y="16" width="480" height="480" rx="98" fill="none" stroke="#ffffff" stroke-width="4" stroke-opacity="0.25" />
+
+  <!-- Main Ledger Book / Sheet Body -->
+  <g>
+    <!-- Ledger Base Card -->
+    <rect x="96" y="100" width="320" height="312" rx="28" fill="#ffffff" />
+    
+    <!-- Ledger Header Bar -->
+    <path d="M 96 128 C 96 112.536 108.536 100 124 100 L 388 100 C 403.464 100 416 112.536 416 128 L 416 166 L 96 166 Z" fill="#0f172a" />
+    
+    <!-- Header Indicator Dots -->
+    <circle cx="132" cy="133" r="6" fill="#ef4444" />
+    <circle cx="152" cy="133" r="6" fill="#f59e0b" />
+    <circle cx="172" cy="133" r="6" fill="#10b981" />
+    
+    <!-- Ledger Ruled Lines -->
+    <line x1="128" y1="205" x2="384" y2="205" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round" />
+    <line x1="128" y1="365" x2="384" y2="365" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Rising Financial Growth Bars -->
+    <rect x="148" y="270" width="44" height="75" rx="8" fill="url(#barGrad1)" />
+    <rect x="214" y="235" width="44" height="110" rx="8" fill="url(#barGrad2)" />
+    <rect x="280" y="195" width="44" height="150" rx="8" fill="url(#barGrad3)" />
+
+    <!-- Growth Trend Arrow Line -->
+    <path d="M 142 285 L 218 230 L 285 198 L 350 156" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <polygon points="358,146 364,170 342,162" fill="#2563eb" />
+
+    <!-- Certified Gold Badge Accent -->
+    <circle cx="368" cy="355" r="24" fill="#f59e0b" />
+    <path d="M 358 355 L 365 362 L 378 348" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

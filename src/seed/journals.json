@@ -1,107 +1,73 @@
 [
   {
-    "id": "j001",
-    "entryNumber": "JV-2569-09001",
-    "date": "2026-09-25",
-    "reference": "INV-2569-0091",
-    "description": "บันทึกการขายสินค้าเป็นเงินเชื่อให้ บริษัท สยามเทรดดิ้ง จำกัด",
+    "id": "jv-001",
+    "journalNumber": "JV-2569-001",
+    "date": "2026-10-01",
+    "memo": "บันทึกรับชำระเงินค่าบริการวางระบบจากลูกหนี้การค้า",
     "status": "posted",
+    "createdBy": "นันท์นภัส บริสุทธิ์บัญชี",
     "lines": [
       {
-        "accountCode": "1103",
-        "accountName": "ลูกหนี้การค้า",
-        "debit": 374500.0,
-        "credit": 0.0
-      },
-      {
-        "accountCode": "4101",
-        "accountName": "รายได้จากการขายสินค้า",
-        "debit": 0.0,
-        "credit": 350000.0
-      },
-      {
-        "accountCode": "2102",
-        "accountName": "ภาษีขายรอนำส่ง",
-        "debit": 0.0,
-        "credit": 24500.0
-      }
-    ]
-  },
-  {
-    "id": "j002",
-    "entryNumber": "JV-2569-09002",
-    "date": "2026-09-26",
-    "reference": "PO-88410",
-    "description": "ซื้อสินค้าสำเร็จรูปเพื่อจำหน่ายเป็นเงินเชื่อ",
-    "status": "posted",
-    "lines": [
-      {
-        "accountCode": "1105",
-        "accountName": "สินค้าคงเหลือ",
-        "debit": 500000.0,
-        "credit": 0.0
-      },
-      {
-        "accountCode": "1106",
-        "accountName": "ภาษีซื้อรอยื่นแบบ",
-        "debit": 35000.0,
-        "credit": 0.0
-      },
-      {
-        "accountCode": "2101",
-        "accountName": "เจ้าหนี้การค้า",
-        "debit": 0.0,
-        "credit": 535000.0
-      }
-    ]
-  },
-  {
-    "id": "j003",
-    "entryNumber": "JV-2569-09003",
-    "date": "2026-09-28",
-    "reference": "RC-2569-0044",
-    "description": "รับชำระหนี้จากลูกหนี้การค้าโอนเข้าบัญชีกระแสรายวัน",
-    "status": "posted",
-    "lines": [
-      {
-        "accountCode": "1102",
+        "accountId": "acc-102",
+        "accountCode": "1110",
         "accountName": "เงินฝากกระแสรายวัน - ธนาคารกสิกรไทย",
-        "debit": 374500.0,
-        "credit": 0.0
+        "debit": 321000,
+        "credit": 0
       },
       {
-        "accountCode": "1103",
+        "accountId": "acc-103",
+        "accountCode": "1120",
         "accountName": "ลูกหนี้การค้า",
-        "debit": 0.0,
-        "credit": 374500.0
+        "debit": 0,
+        "credit": 321000
       }
     ]
   },
   {
-    "id": "j004",
-    "entryNumber": "JV-2569-09004",
-    "date": "2026-09-30",
-    "reference": "SAL-2569-09",
-    "description": "บันทึกจ่ายเงินเดือนและหักภาษีเงินได้ ณ ที่จ่ายประจำเดือนกันยายน",
-    "status": "draft",
+    "id": "jv-002",
+    "journalNumber": "JV-2569-002",
+    "date": "2026-10-15",
+    "memo": "จ่ายชำระค่าเช่าสำนักงานและสาธารณูปโภคประจำงวด",
+    "status": "posted",
+    "createdBy": "นันท์นภัส บริสุทธิ์บัญชี",
     "lines": [
       {
-        "accountCode": "5201",
-        "accountName": "เงินเดือนและสวัสดิการพนักงาน",
-        "debit": 350000.0,
-        "credit": 0.0
+        "accountId": "acc-503",
+        "accountCode": "5300",
+        "accountName": "ค่าเช่าสถานที่และสาธารณูปโภค",
+        "debit": 85000,
+        "credit": 0
       },
       {
-        "accountCode": "2103",
-        "accountName": "ภาษีเงินได้หัก ณ ที่จ่ายค้างจ่าย",
-        "debit": 0.0,
-        "credit": 10500.0
-      },
-      {
-        "accountCode": "1102",
+        "accountId": "acc-102",
+        "accountCode": "1110",
         "accountName": "เงินฝากกระแสรายวัน - ธนาคารกสิกรไทย",
-        "debit": 0.0,
-        "credit": 339500.0
+        "debit": 0,
+        "credit": 85000
+      }
+    ]
+  },
+  {
+    "id": "jv-003",
+    "journalNumber": "JV-2569-003",
+    "date": "2026-10-25",
+    "memo": "บันทึกตั้งหนี้เงินเดือนและผลประโยชน์พนักงานสิ้นเดือน",
+    "status": "posted",
+    "createdBy": "นันท์นภัส บริสุทธิ์บัญชี",
+    "lines": [
+      {
+        "accountId": "acc-502",
+        "accountCode": "5200",
+        "accountName": "เงินเดือน ค่าล่วงเวลา และสวัสดิการ",
+        "debit": 450000,
+        "credit": 0
+      },
+      {
+        "accountId": "acc-202",
+        "accountCode": "2110",
+        "accountName": "ค่าใช้จ่ายค้างจ่าย",
+        "debit": 0,
+        "credit": 450000
       }
     ]
   }

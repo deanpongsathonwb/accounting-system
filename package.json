@@ -1,5 +1,5 @@
 {
-  "name": "accounting-system",
+  "name": "react-example",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
+    "@hookform/resolvers": "^6.0.2",
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.1",
     "dotenv": "^17.2.3",
@@ -20,10 +21,11 @@
     "motion": "^12.23.24",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
-    "react-hook-form": "^7.89.0",
-    "react-router-dom": "^7.18.4",
+    "react-hook-form": "^7.91.0",
+    "react-router-dom": "^7.18.5",
     "vite": "^8.3.0",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7",
+    "zustand": "^5.0.16"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

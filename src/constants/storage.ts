@@ -1,7 +1,4 @@
 export const STORAGE_KEYS = {
-  CURRENT_USER: 'app_accounting_user',
-  SETTINGS: 'app_accounting_settings',
-  JOURNALS: 'app_accounting_journals',
-  ACCOUNTS: 'app_accounting_accounts',
-  INVOICES: 'app_accounting_invoices',
+  AUTH_USER: 'accounting_auth_current_user',
+  APP_DATA: 'accounting_app_data_state'
 } as const;

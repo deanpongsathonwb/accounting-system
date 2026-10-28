@@ -1,106 +1,38 @@
-{
-  "customers": [
-    {
-      "code": "CUST-001",
-      "name": "บริษัท สยามเทรดดิ้ง คอมเมิร์ซ จำกัด",
-      "taxId": "0105558012345",
-      "creditLimit": 1000000.0,
-      "currentDebt": 374500.0,
-      "phone": "02-123-4567",
-      "contactPerson": "คุณวิชัย มั่นคง",
-      "logoKey": "c001"
-    },
-    {
-      "code": "CUST-002",
-      "name": "บริษัท กรุงเทพ ซัพพลาย โซลูชั่นส์ จำกัด",
-      "taxId": "0105559098765",
-      "creditLimit": 1500000.0,
-      "currentDebt": 850000.0,
-      "phone": "02-987-6543",
-      "contactPerson": "คุณสมหญิง จิตแจ่มใส",
-      "logoKey": "c002"
-    },
-    {
-      "code": "CUST-003",
-      "name": "ห้างหุ้นส่วนจำกัด ทักษิณ วิศวกรรม",
-      "taxId": "0103554005544",
-      "creditLimit": 500000.0,
-      "currentDebt": 925500.0,
-      "phone": "074-321-999",
-      "contactPerson": "คุณกิตติศักดิ์ ชูเกียรติ",
-      "logoKey": "c003"
-    }
-  ],
-  "invoices": [
-    {
-      "invoiceNumber": "INV-2569-0091",
-      "customerCode": "CUST-001",
-      "customerName": "บริษัท สยามเทรดดิ้ง คอมเมิร์ซ จำกัด",
-      "issueDate": "2026-09-15",
-      "dueDate": "2026-10-15",
-      "subtotal": 350000.0,
-      "vat": 24500.0,
-      "total": 374500.0,
-      "status": "pending"
-    },
-    {
-      "invoiceNumber": "INV-2569-0082",
-      "customerCode": "CUST-002",
-      "customerName": "บริษัท กรุงเทพ ซัพพลาย โซลูชั่นส์ จำกัด",
-      "issueDate": "2026-08-20",
-      "dueDate": "2026-09-19",
-      "subtotal": 794392.52,
-      "vat": 55607.48,
-      "total": 850000.0,
-      "status": "overdue"
-    },
-    {
-      "invoiceNumber": "INV-2569-0075",
-      "customerCode": "CUST-003",
-      "customerName": "ห้างหุ้นส่วนจำกัด ทักษิณ วิศวกรรม",
-      "issueDate": "2026-07-10",
-      "dueDate": "2026-08-09",
-      "subtotal": 864953.27,
-      "vat": 60546.73,
-      "total": 925500.0,
-      "status": "overdue"
-    },
-    {
-      "invoiceNumber": "INV-2569-0068",
-      "customerCode": "CUST-001",
-      "customerName": "บริษัท สยามเทรดดิ้ง คอมเมิร์ซ จำกัด",
-      "issueDate": "2026-08-01",
-      "dueDate": "2026-08-31",
-      "subtotal": 200000.0,
-      "vat": 14000.0,
-      "total": 214000.0,
-      "status": "paid"
-    }
-  ],
-  "receipts": [
-    {
-      "receiptNumber": "RC-2569-0044",
-      "invoiceNumber": "INV-2569-0068",
-      "customerName": "บริษัท สยามเทรดดิ้ง คอมเมิร์ซ จำกัด",
-      "date": "2026-08-28",
-      "amount": 214000.0,
-      "paymentMethod": "โอนเงินเข้าธนาคาร"
-    },
-    {
-      "receiptNumber": "RC-2569-0043",
-      "invoiceNumber": "INV-2569-0059",
-      "customerName": "บริษัท กรุงเทพ ซัพพลาย โซลูชั่นส์ จำกัด",
-      "date": "2026-08-15",
-      "amount": 428000.0,
-      "paymentMethod": "เช็คธนาคาร"
-    }
-  ],
-  "agingSummary": {
-    "current": 374500.0,
-    "range1to30": 850000.0,
-    "range31to60": 0.0,
-    "range61to90": 925500.0,
-    "over90": 0.0,
-    "total": 2150000.0
+[
+  {
+    "id": "inv-001",
+    "invoiceNo": "INV-2569-001",
+    "customer": "บริษัท ไทยเทคโนโลยีดิจิทัล จำกัด",
+    "issueDate": "2026-10-05",
+    "dueDate": "2026-11-05",
+    "subtotal": 300000,
+    "vatAmount": 21000,
+    "grandTotal": 321000,
+    "status": "paid",
+    "description": "บริการให้คำปรึกษาและวางระบบการบริหารจัดการบัญชี"
+  },
+  {
+    "id": "inv-002",
+    "invoiceNo": "INV-2569-002",
+    "customer": "ห้างหุ้นส่วนจำกัด สหพาณิชย์ขนส่ง",
+    "issueDate": "2026-10-12",
+    "dueDate": "2026-11-12",
+    "subtotal": 450000,
+    "vatAmount": 31500,
+    "grandTotal": 481500,
+    "status": "pending",
+    "description": "สัญญาบริการตรวจสอบและสอบทานบัญชีภายในรอบไตรมาส"
+  },
+  {
+    "id": "inv-003",
+    "invoiceNo": "INV-2569-003",
+    "customer": "บริษัท พัฒนกิจการเกษตรกรรม จำกัด",
+    "issueDate": "2026-09-18",
+    "dueDate": "2026-10-18",
+    "subtotal": 120000,
+    "vatAmount": 8400,
+    "grandTotal": 128400,
+    "status": "overdue",
+    "description": "บริการจัดทำงบการเงินและเอกสารยื่นภาษีเงินได้นิติบุคคล"
   }
-}
+]

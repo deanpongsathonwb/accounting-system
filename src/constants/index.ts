@@ -1,5 +1,6 @@
 import uiData from './ui.json';
-export { APP_ROUTES } from './routes.ts';
+export { ROUTES } from './routes.ts';
 export { STORAGE_KEYS } from './storage.ts';
 
-export const ui = uiData;
+export const UI = uiData;
+export default UI;

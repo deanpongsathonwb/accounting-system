@@ -1,24 +1,31 @@
-export type UserRole = 'accountant' | 'auditor' | 'billing' | 'admin';
+export type UserRole = 'accountant' | 'finance' | 'auditor' | 'admin';
 
 export interface User {
   id: string;
   username: string;
   fullName: string;
   role: UserRole;
-  status: string;
+  email: string;
+  avatarKey: string;
+  status: 'active' | 'inactive';
   lastLogin: string;
 }
 
+export type AccountType = 'asset' | 'liability' | 'equity' | 'revenue' | 'expense';
+export type NormalBalance = 'debit' | 'credit';
+
 export interface AccountItem {
+  id: string;
   code: string;
   name: string;
-  category: 'asset' | 'liability' | 'equity' | 'revenue' | 'expense';
-  normalBalance: 'debit' | 'credit';
+  type: AccountType;
+  normalBalance: NormalBalance;
   balance: number;
-  active: boolean;
+  status: 'active' | 'inactive';
 }
 
 export interface JournalLine {
+  accountId: string;
   accountCode: string;
   accountName: string;
   debit: number;
@@ -27,65 +34,86 @@ export interface JournalLine {
 
 export interface JournalEntry {
   id: string;
-  entryNumber: string;
+  journalNumber: string;
   date: string;
-  reference: string;
-  description: string;
-  status: 'draft' | 'posted';
+  memo: string;
+  status: 'draft' | 'posted' | 'void';
+  createdBy: string;
   lines: JournalLine[];
 }
 
-export interface Customer {
-  code: string;
-  name: string;
-  taxId: string;
-  creditLimit: number;
-  currentDebt: number;
-  phone: string;
-  contactPerson: string;
-  logoKey: string;
-}
-
-export interface Invoice {
-  invoiceNumber: string;
-  customerCode: string;
-  customerName: string;
+export interface InvoiceItem {
+  id: string;
+  invoiceNo: string;
+  customer: string;
   issueDate: string;
   dueDate: string;
   subtotal: number;
-  vat: number;
-  total: number;
-  status: 'pending' | 'paid' | 'overdue';
+  vatAmount: number;
+  grandTotal: number;
+  status: 'pending' | 'paid' | 'overdue' | 'void';
+  description: string;
 }
 
-export interface Receipt {
-  receiptNumber: string;
-  invoiceNumber: string;
-  customerName: string;
-  date: string;
-  amount: number;
-  paymentMethod: string;
+export interface BillItem {
+  id: string;
+  billNo: string;
+  vendor: string;
+  issueDate: string;
+  dueDate: string;
+  subtotal: number;
+  vatAmount: number;
+  grandTotal: number;
+  status: 'pending' | 'paid' | 'overdue' | 'void';
+  description: string;
 }
 
-export interface AuditLog {
+export interface BankAccountItem {
+  id: string;
+  bankName: string;
+  branch: string;
+  accountNumber: string;
+  accountType: string;
+  balance: number;
+  lastReconciled: string;
+}
+
+export interface AuditLogItem {
   id: string;
   timestamp: string;
   actor: string;
   role: UserRole;
-  action: string;
-  module: string;
-  details: string;
+  actionType: string;
+  entity: string;
   ipAddress: string;
 }
 
 export interface SystemSettings {
   systemOwner: string;
   taxId: string;
-  address: string;
-  fiscalYear: number;
-  taxRatePercent: number;
-  withholdingTaxPercent: number;
-  invoiceDueDays: number;
-  autoPostJournals: boolean;
-  accountingStandard: string;
+  fiscalYear: string;
+  accountingMethod: string;
+  defaultVatRate: number;
+  withholdingTaxRate: number;
+  allowBackdatedEntries: boolean;
+  requireDoubleApproval: boolean;
+  autoJournalNumbering: boolean;
+  invoicePrefix: string;
+  billPrefix: string;
+  journalPrefix: string;
+  currencyCode: string;
 }
+
+export type NotificationType = 'info' | 'success' | 'warning' | 'security';
+
+export interface NotificationItem {
+  id: string;
+  title: string;
+  message: string;
+  type: NotificationType;
+  timestamp: string;
+  read: boolean;
+  link?: string;
+  targetRole?: UserRole | 'all';
+}
+

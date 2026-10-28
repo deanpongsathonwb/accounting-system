@@ -1,34 +1,42 @@
 [
   {
-    "id": "u001",
-    "username": "somchai.acc",
-    "fullName": "สมชาย รักความเที่ยงตรง",
+    "id": "usr-1",
+    "username": "accountant",
+    "fullName": "นันท์นภัส บริสุทธิ์บัญชี",
     "role": "accountant",
+    "email": "nannaphat.acc@siamaccount.co.th",
+    "avatarKey": "accountant",
     "status": "active",
-    "lastLogin": "2026-09-30 08:45"
+    "lastLogin": "2026-10-27 08:30"
   },
   {
-    "id": "u002",
-    "username": "orathai.aud",
-    "fullName": "อรทัย ตรวจสอบละเอียด",
+    "id": "usr-2",
+    "username": "finance",
+    "fullName": "ชนินทร์ การเงินเลิศ",
+    "role": "finance",
+    "email": "chanin.fin@siamaccount.co.th",
+    "avatarKey": "finance",
+    "status": "active",
+    "lastLogin": "2026-10-27 08:15"
+  },
+  {
+    "id": "usr-3",
+    "username": "auditor",
+    "fullName": "ดร.วิชัย ธรรมาภิบาล",
     "role": "auditor",
+    "email": "wichai.audit@siamaccount.co.th",
+    "avatarKey": "auditor",
     "status": "active",
-    "lastLogin": "2026-09-30 09:12"
+    "lastLogin": "2026-10-26 17:45"
   },
   {
-    "id": "u003",
-    "username": "thanakorn.bill",
-    "fullName": "ธนกร เรียกเก็บทันใจ",
-    "role": "billing",
-    "status": "active",
-    "lastLogin": "2026-09-30 08:30"
-  },
-  {
-    "id": "u004",
-    "username": "kamonrat.adm",
-    "fullName": "กมลรัตน์ มั่นคงระบบ",
+    "id": "usr-4",
+    "username": "admin",
+    "fullName": "กฤษฎา ผู้ดูแลระบบ",
     "role": "admin",
+    "email": "kritsada.adm@siamaccount.co.th",
+    "avatarKey": "admin",
     "status": "active",
-    "lastLogin": "2026-09-30 07:55"
+    "lastLogin": "2026-10-27 08:00"
   }
 ]
